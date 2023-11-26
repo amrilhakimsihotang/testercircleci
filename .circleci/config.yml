@@ -13,16 +13,7 @@ jobs:
             sudo apt-get -y install hadolint
             hadolint Dockerfile
  
-  test-app:
-    docker:
-      - image: golang:1.17
-    steps:
-      - checkout
-      - run:
-          name: Set up Go and Run Unit Tests
-          command: go test -v -short --count=1 $(go list ./...)
- 
-  build-app-karsajobs:
+  build-app-karsajobs-ui:
     docker:
       - image: cimg/base:stable
     steps:
@@ -39,10 +30,7 @@ jobs:
 
 workflows:
   version: 2
-  karsajobs-ci:
+  karsajobs-ui-ci:
     jobs:
       - lint-dockerfile
-      - test-app
-      - build-app-karsajobs:
-          requires:
-            - test-app
+      - build-app-karsajobs-ui
