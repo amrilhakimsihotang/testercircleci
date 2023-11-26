@@ -1,5 +1,5 @@
 version: 2.1
-
+ 
 jobs:
   lint-dockerfile:
     docker:
@@ -12,7 +12,7 @@ jobs:
             sudo apt-get update
             sudo apt-get -y install hadolint
             hadolint Dockerfile
-
+ 
   test-app:
     docker:
       - image: golang:1.17
@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Set up Go and Run Unit Tests
           command: go test -v -short --count=1 $(go list ./...)
-
+ 
   build-app-karsajobs:
     docker:
       - image: cimg/base:stable
