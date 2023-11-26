@@ -29,12 +29,13 @@ jobs:
       - checkout
       - run:
           name: Login to GitHub Container Registry
-          command: docker login ghcr.io -u Jastiadirizal -p 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
+          command: echo "$GITHUB_TOKEN" | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
       - run:
           name: Build and Push images to Github Packages
           command: |
-            docker build -t ghcr.io/jastiadirizal/karsajobs:latest .
-            docker push ghcr.io/jastiadirizal/karsajobs:latest
+             sudo mkdir /build &&
+             docker build -t ghcr.io/amrilhakimsihotang/a433-microservices/amril2023/karsajobs:latest . &&
+             docker push ghcr.io/amrilhakimsihotang/a433-microservices/amril2023/karsajobs:latest
 
 workflows:
   version: 2
